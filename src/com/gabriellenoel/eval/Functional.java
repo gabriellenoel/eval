@@ -2,19 +2,20 @@ package com.gabriellenoel.eval;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Functional {
 
     public static List<Integer> rightDigit(List<Integer> numberList) {
-        return Arrays.asList(numberList.stream().map(num -> (num % 10)).toArray(Integer[]::new));
+        return numberList.stream().map(num -> (num % 10)).collect(Collectors.toList());
     }
 
     public static List<Integer> doubling(List<Integer> numberList) {
-        return Arrays.asList(numberList.stream().map(num -> (num * 2)).toArray(Integer[]::new));
+        return numberList.stream().map(num -> (num * 2)).collect(Collectors.toList());
     }
 
     public static List<String> noX(List<String> numberList) {
-        return Arrays.asList(numberList.stream().map(num -> (num.replaceAll("x", ""))).toArray(String[]::new));
+        return numberList.stream().map(num -> (num.replaceAll("x", ""))).collect(Collectors.toList());
     }
 
     public static void main(String[] args) {
