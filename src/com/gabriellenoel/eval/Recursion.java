@@ -55,7 +55,8 @@ public class Recursion {
     }
 
     public static boolean groupSumClump(int start, Integer[] input, int summed) {
-        return Recursion.checkIfSum(start, Recursion.identicals(input), summed);
+        Recursion recursion = new Recursion();
+        return recursion.checkIfSum(start, recursion.identicals(input), summed);
     }
 
     public static void main(String[] args){
