@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Recursion {
 
-    public static boolean checkIfSum(int index, Integer[] input, int targetSum) {
-
-        for (int i = index ; i < input.length ; i++) {
+    public static boolean checkIfSum(int start, Integer[] input, int targetSum) {
+// adjacent
+        for (int i = start ; i < input.length ; i++) {
             for (int j = i + 1 ; j < input.length ; j++) {
                 int sum = input[i];
                 if (sum == targetSum) {
@@ -27,29 +27,30 @@ public class Recursion {
 
     // method sums identical values only, leaves others as is
     public static Integer[] identicals(Integer[] input) {
+        // instructions said to do one loop to find identicals first
         List<Integer> newArray = new LinkedList<>();
         int sum = 0;
 
         for (int i = 0; i < input.length; i++) {
             if (i == input.length - 1) {
-                // add final value to existing sum
+                // don't compare last one to adjacent, just add to sum
                 newArray.add(sum + input[i]);
-            } else if (input[i] == input[i + 1]) {
-                // include identical values in sum
+            } else if (input[i].equals(input[i + 1])) {
+                // include identical values in sum if next to each other
                 sum += input[i];
-            } else if (input[i] != input[i + 1]) {
-                // adds sum of non-identical items to array and then sets sum to 0 again
+            } else if (!input[i].equals(input[i + 1])) {
+                // adds sum of non-identical items and then sets sum to 0 again
                 sum += input[i];
                 newArray.add(sum);
                 sum = 0;
             }
         }
        System.out.println(newArray);
-        return newArray.toArray(new Integer[newArray.size()]);
+        return newArray.toArray(new Integer[0]);
     }
 
-    public static boolean groupSumClump(int index, Integer[] input, int summed) {
-        return Recursion.checkIfSum(index, Recursion.identicals(input), summed);
+    public static boolean groupSumClump(int start, Integer[] input, int summed) {
+        return Recursion.checkIfSum(start, Recursion.identicals(input), summed);
     }
 
     public static void main(String[] args){
