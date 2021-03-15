@@ -8,20 +8,25 @@ public class Recursion {
     public static boolean checkIfSum(int start, Integer[] input, int targetSum) {
 // adjacent
         for (int i = start ; i < input.length ; i++) {
+            // outer loop goes for as long as the array of grouped integers is
             for (int j = i + 1 ; j < input.length ; j++) {
+                // inner loop goes through array to snag adjacent value at the same time
                 int sum = input[i];
                 if (sum == targetSum) {
+                    // returns true if sum of numbers equals target sum
                     return true;
                 }
 
                 for (int k = j; k < input.length; k++) {
+                    // inner inner loop adds values to the value sum
                     sum+= input[k];
 
                     if (sum == targetSum) {
+                        // returns true if sum of numbers equals target sum
                         return true;
                     }
                 }
-            }
+            } // if sum NEVER == targetSum, return false
         } return false;
     }
 
