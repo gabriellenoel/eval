@@ -6,11 +6,22 @@ import java.sql.*;
 public class SampleSingleton {
 
     private static Connection conn = null;
-    private static SampleSingleton instance = null;
+    private static volatile SampleSingleton instance;
+    private static Object makeThreadSafe = new Object();
+
+    private SampleSingleton() {
+    }
 
     private static SampleSingleton getInstance() {
-        if (instance == null)
-            instance = new SampleSingleton();
+        SampleSingleton result = instance;
+        if (instance == null) {
+            synchronized (makeThreadSafe){
+                result = instance;
+                if (result == null) {
+                    instance = result = new SampleSingleton();
+                }
+            }
+        }
             return instance;
         }
 
