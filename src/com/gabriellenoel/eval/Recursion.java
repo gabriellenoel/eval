@@ -59,6 +59,7 @@ public class Recursion {
     }
 
     public static void main(String[] args){
+        // calls itself on itself
         Recursion recursion = new Recursion();
         Integer[] testInput = { 1, 7, 7, 7, 5 };
 //        System.out.println(groupSumClump(0, testInput, 27));
